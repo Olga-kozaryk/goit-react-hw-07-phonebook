@@ -7,8 +7,8 @@ import { filter } from '../../redux/filterSlice';
 const Filter = () => {
   const dispatch = useDispatch();
 
-  const search = (event) => {
-    dispatch(filter(event.target.value));
+  const search = (e) => {
+    dispatch(filter(e.target.value));
   };
 
   return (
