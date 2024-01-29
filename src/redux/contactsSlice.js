@@ -3,18 +3,17 @@ import { addContact, deleteContact, fetchContacts } from "./thunk";
 
 const initialState = {
   items: [],
-  isLoading:false,
+  isLoading: false,
   error: null,
 };
 
 const handlePending = (state) => {
-  state.isLoading = true
-  state.error =''
-};
-
-const handleRejected = (state, {payload}) => {
-  state.isLoading = false
-  state.error = payload
+	state.isLoading = true
+	state.error = ''
+}
+const handleRejected = (state, { payload }) => {
+	state.isLoading = false
+	state.error = payload
 }
 
 const contactsSlice = createSlice({
@@ -34,26 +33,27 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
+
         if (state.items.find(el => el.name === action.payload.name)) {
-          alert (`${action.payload.name} is already in contacts`);
+          alert(`${action.payload.name} is already in contacts`);
           return;
         }
+  
         state.items.push(action.payload);
       })
-      .addCase(addContact.rejected.handleRejected)
+      .addCase(addContact.rejected, handleRejected)
 
       .addCase(deleteContact.pending, handlePending)
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-        const index = state.items.findIndex((contact) => 
-        contact.id === action.payload.id);
-        state.items.splice(index,1);
+        const index = state.items.findIndex((contact) => contact.id === action.payload.id);
+        state.items.splice(index, 1);
       })
       .addCase(deleteContact.rejected, handleRejected);
   },
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export { fetchContacts, addContact,deleteContact};
+export { fetchContacts, addContact, deleteContact };
 

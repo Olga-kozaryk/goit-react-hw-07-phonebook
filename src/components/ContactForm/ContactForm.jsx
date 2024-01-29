@@ -15,7 +15,7 @@ const ContactForm = () => {
 
         const contact = {
             name: form.el.name.value,
-            number: form.el.number.value,
+            phone: form.el.number.value,
         }
 
         dispatch(addContact(contact));
