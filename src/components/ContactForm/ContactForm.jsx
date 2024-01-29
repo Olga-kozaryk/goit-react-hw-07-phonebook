@@ -8,14 +8,14 @@ import { BtnForm } from './BtnForm.styled';
 const ContactForm = () => {
     const dispatch = useDispatch();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const handleSubmit = (event) => {
+        event.preventDefault();
         
-        const form = e.target;
+        const form = event.target;
 
         const contact = {
-            name: form.el.name.value,
-            phone: form.el.number.value,
+            name: form.elements.name.value,
+            phone: form.elements.number.value,
         }
 
         dispatch(addContact(contact));
@@ -26,7 +26,6 @@ const ContactForm = () => {
     return (
             <Form onSubmit={handleSubmit}>
                 <Label>
-
                     <input
                         type="text"
                         name="name"
