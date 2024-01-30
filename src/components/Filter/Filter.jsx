@@ -1,4 +1,3 @@
-
 import { useDispatch } from 'react-redux';
 
 import { Label } from './FilterLabel.styled';

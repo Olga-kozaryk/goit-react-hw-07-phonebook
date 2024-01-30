@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import List from './ContactList.styled';
 import BtnDelete from './BtnDelet.styled';
-import { deleteContact, fetchContacts } from '../../redux/contactsSlice';
+import { deleteContact, fetchContacts } from '../../redux/thunk';
 import { getContacts, getFilter } from '../../redux/selector';
 import { useEffect } from 'react';
 import Loader from 'components/Loader';

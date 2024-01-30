@@ -33,13 +33,7 @@ const contactsSlice = createSlice({
       .addCase(addContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.error = null;
-
-        if (state.items.find(el => el.name === action.payload.name)) {
-          alert(`${action.payload.name} is already in contacts`);
-          return;
-        }
-  
-        state.items.push(action.payload);
+        state.items = [...state.items, action.payload];
       })
       .addCase(addContact.rejected, handleRejected)
 
@@ -55,5 +49,5 @@ const contactsSlice = createSlice({
 });
 
 export const contactsReducer = contactsSlice.reducer;
-export { fetchContacts, addContact, deleteContact };
+
 
